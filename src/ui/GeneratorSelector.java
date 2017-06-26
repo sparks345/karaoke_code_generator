@@ -1,5 +1,9 @@
 package ui;
 
+import business.IGenerator;
+import business.generator.ParcelGenerator;
+import com.intellij.psi.PsiFile;
+
 import javax.swing.*;
 import java.awt.event.*;
 
@@ -11,6 +15,8 @@ public class GeneratorSelector extends JDialog {
     private JRadioButton parcelRadioButton;
     private JRadioButton dbCacheDataRadioButton;
     private JRadioButton reportRadioButton;
+
+    private PsiFile mCurrentPsiFile;
 
     public GeneratorSelector() {
         setContentPane(contentPane);
@@ -47,8 +53,18 @@ public class GeneratorSelector extends JDialog {
 
     private void onOK() {
         // add your code here
-
+        IGenerator generator = getSelectedGenerator();
+        generator.run();
         dispose();
+    }
+
+    private IGenerator getSelectedGenerator() {
+        IGenerator generator = null;
+        if(parcelRadioButton.isSelected()) {
+            generator = new ParcelGenerator(mCurrentPsiFile);
+        }
+
+        return generator;
     }
 
     private void onCancel() {
@@ -61,5 +77,9 @@ public class GeneratorSelector extends JDialog {
         dialog.pack();
         dialog.setVisible(true);
         System.exit(0);
+    }
+
+    public void setContextPsiFile(PsiFile currentPsiFile) {
+        mCurrentPsiFile = currentPsiFile;
     }
 }

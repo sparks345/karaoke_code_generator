@@ -9,17 +9,24 @@ import com.intellij.psi.PsiFile;
  */
 public abstract class BaseGenerator implements IGenerator {
 
+    private final PsiFile mCurrentPsiFile;
+
+    public BaseGenerator(PsiFile file) {
+        mCurrentPsiFile = file;
+    }
+
     public void run() {
+
         PsiFile psiFile = getCurrentPsiFile();
 
         PsiElement[] elements = this.getElements(psiFile);
 
         PsiElement[] validElements = this.filter(elements, psiFile);
 
-        this.generate(psiFile);
+        this.generate(validElements, psiFile);
     }
 
     private PsiFile getCurrentPsiFile() {
-        return null;
+        return mCurrentPsiFile;
     }
 }

@@ -30,7 +30,7 @@
 
   <actions>
     <!-- Add your actions here -->
-    <action id="karaoke_code_generator" class="KaraokeCodeGenerator" text="_Generate Karaokey Code"
+    <action id="karaoke_code_generator" class="KaraokeCodeGenerator" text="_Generate Karaoke Code"
             description="Generate code such as Parcel, DbCacheData, R/W Reporter etc.">
       <add-to-group group-id="CodeMenu" anchor="last"/>
       <keyboard-shortcut keymap="$default" first-keystroke="shift ctrl alt G"/>
