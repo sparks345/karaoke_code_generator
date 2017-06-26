@@ -27,5 +27,7 @@ public class KaraokeCodeGenerator extends AnAction {
         PsiFile currentPsiFile = PsiUtilBase.getPsiFileInEditor(editor, project);
         mSelector.setContextPsiFile(currentPsiFile);
         mSelector.setVisible(true);
+        mSelector.setSize(500, 500);
+        mSelector.requestFocus();
     }
 }
